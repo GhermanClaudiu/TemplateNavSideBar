@@ -1,0 +1,49 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.login-page h2 {
+  margin-bottom: 20px;
+}
+
+.login-page form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.login-page label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.login-page input {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.login-page .button-container {
+  display: flex;
+  justify-content: flex-end; /* Aliniază butonul la dreapta */
+}
+
+.login-page button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  width: 30%; /* sau o altă valoare specifică dacă dorești */
+}
+.login-page button:hover {
+  background-color: #0056b3;
+}
