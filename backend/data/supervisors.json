@@ -3,54 +3,96 @@
     "id": "s1",
     "FirstName": "Gherman",
     "LastName": "Claudiu",
-    "Team": "RBA"
+    "Team": "RBA",
+    "isActive": false
   },
   {
     "id": "s2",
     "FirstName": "Gherman",
     "LastName": "Luca",
-    "Team": "Cocpit"
+    "Team": "Cocpit",
+    "isActive": true
   },
   {
     "id": "s3",
     "FirstName": "Gherman",
     "LastName": "Roxana",
-    "Team": "MRA"
+    "Team": "MRA",
+    "isActive": true
   },
   {
     "id": "s4",
     "FirstName": "Gherman",
     "LastName": "Sara",
-    "Team": "Doors"
+    "Team": "Doors",
+    "isActive": true
   },
   {
     "id": "s80194f1b822ee",
     "FirstName": "Ion",
     "LastName": "Popescu",
-    "Team": "Development"
+    "Team": "Development",
+    "isActive": true
   },
   {
     "id": "s6e51c738e3f33",
     "FirstName": "Razvan",
     "LastName": "vatca",
-    "Team": "Doors"
+    "Team": "Doors",
+    "isActive": true
   },
   {
     "id": "s7aeb67b48d082",
     "FirstName": "Vatca",
     "LastName": "Adelina",
-    "Team": "MRA"
+    "Team": "MRA",
+    "isActive": true
   },
   {
     "id": "s31db3eede50c3",
     "FirstName": "Vatca",
     "LastName": "Cornel",
-    "Team": "MRA"
+    "Team": "MRA",
+    "isActive": true
   },
   {
     "id": "s6307ea506f2d3",
     "FirstName": "Breazu",
     "LastName": "Ovidiu",
-    "Team": "Cockpit"
+    "Team": "Cockpit",
+    "isActive": true
+  },
+  {
+    "id": "s3510e2cf983e",
+    "FirstName": "Ion",
+    "LastName": "George",
+    "Team": "MRA",
+    "isActive": true
+  },
+  {
+    "id": "s5ed250118ae71",
+    "FirstName": "Ion",
+    "LastName": "Marin",
+    "Team": "MRA",
+    "isActive": true
+  },
+  {
+    "id": "sa4116b9fa7d96",
+    "FirstName": "Ion",
+    "LastName": "Marin",
+    "Team": "MRA",
+    "isActive": true
+  },
+  {
+    "id": "s6ec9c5281507d",
+    "FirstName": "Gherman",
+    "LastName": "Tinu",
+    "Team": "MRA"
+  },
+  {
+    "id": "sd82c6c25e94fc",
+    "FirstName": "Gherman",
+    "LastName": "Fina",
+    "Team": "RBA"
   }
 ]

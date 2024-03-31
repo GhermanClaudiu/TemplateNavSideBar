@@ -5,6 +5,8 @@ import Button from "../Buttons/Button.jsx";
 import "./Supervisors.css";
 
 function Supervisor() {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingUserId, setEditingUserId] = useState(null);
   const [userFirstName, setUserFirstName] = useState("");
   const [userLastName, setUserLastName] = useState("");
   const [userTeam, setUserTeam] = useState("");
@@ -70,6 +72,14 @@ function Supervisor() {
     }
   };
 
+  const handleEdit = (user) => {
+    setUserFirstName(user.FirstName);
+    setUserLastName(user.LastName);
+    setUserTeam(user.Team);
+    setIsEditing(true);
+    setEditingUserId(user.id); // Setarea ID-ului pentru a ști pe cine să actualizezi
+  };
+
   return (
     /* Sectiunea1: Manual Inputs */
     <>
@@ -126,6 +136,8 @@ function Supervisor() {
               <th>FirstName</th>
               <th>LastName</th>
               <th>Team</th>
+              <th>UserActive</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -134,6 +146,14 @@ function Supervisor() {
                 <td>{user.FirstName}</td>
                 <td>{user.LastName}</td>
                 <td>{user.Team}</td>
+                <td>{user.isActive ? "Active" : "Inactive"}</td>
+                <td>
+                  <td>
+                    <button onClick={() => handleEdit(user)} data-id={user.id}>
+                      📝
+                    </button>
+                  </td>
+                </td>
               </tr>
             ))}
           </tbody>

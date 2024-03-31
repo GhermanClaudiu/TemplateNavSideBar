@@ -37,12 +37,14 @@ app.post("/supervisor", async (req, res) => {
     FirstName,
     LastName,
     Team,
+    isActive: true,
   };
 
   try {
     const data = await fs.readFile("./data/supervisors.json", "utf8");
     const supervisors = JSON.parse(data);
     supervisors.push(newSupervisor); // Adaugă noul supervisor în array
+    console.log("supervisor" + supervisors);
     await fs.writeFile(
       "./data/supervisors.json",
       JSON.stringify(supervisors, null, 2)
