@@ -1,0 +1,19 @@
+version: "3"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/usr/src/app
+    command: npm start
+
+  vite-project:
+    build: ./vite-project
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./vite-project:/usr/src/app
+    command: npm run dev
+    depends_on:
+      - backend
