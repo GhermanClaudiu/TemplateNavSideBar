@@ -1,19 +1,25 @@
 version: "3.8"
 services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
     ports:
       - "3000:3000"
     volumes:
-      - ./backend:/usr/src/app
+      - docker_backend:/usr/src/app
     command: npm start
 
   vite-project:
-    build: ./vite-project
+    build: 
+      context: ./vite-project
     ports:
       - "5173:5173"
     volumes:
-      - ./vite-project:/usr/src/app
+      - docker_vite-project:/usr/src/app
     command: npm run dev
     depends_on:
       - backend
+
+volumes:
+  docker_backend:
+  docker_vite-project:
