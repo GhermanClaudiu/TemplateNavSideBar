@@ -4,12 +4,15 @@ import Inputs from "../Inputs/Inputs";
 import Select from "../Select/Select";
 import Button from "../Buttons/Button.jsx";
 import Checkbox from "../Checkbox/Checkbox.jsx";
+import useHttp from "../../hooks/useHttp.js";
+
 import "./Supervisors.css";
 
 function Supervisor() {
   const [isEditing, setIsEditing] = useState(false);
-  const [userIsActive, setUserIsActive] = useState(false); // Starea pentru activarea utilizatorului
+  const [userIsActive, setUserIsActive] = useState(false);
   const [editingUserId, setEditingUserId] = useState(null);
+
   const [userFirstName, setUserFirstName] = useState("");
   const [userLastName, setUserLastName] = useState("");
   const [userTeam, setUserTeam] = useState("");
@@ -22,24 +25,23 @@ function Supervisor() {
   const [validationErrors, setValidationErrors] = useState({});
   const [operationSuccess, setOperationSuccess] = useState(false);
 
-  useEffect(() => {
-    // Realizează cererea HTTP pentru a obține datele
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/supervisor"); // Ajustează URL-ul conform nevoilor tale
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setUsers(data);
-        setFilteredUsers(data); // Presupunem că datele primite sunt deja filtrate sau le vei filtra ulterior
-      } catch (error) {
-        console.error("Could not fetch data: ", error);
-      }
-    };
+  const {
+    data: fetchedUsers,
+    isLoading,
+    error,
+    sendRequest,
+  } = useHttp("http://localhost:3000/supervisor", { method: "GET" }, []);
 
-    fetchData();
-  }, [reloadSupervisors]);
+  useEffect(() => {
+    sendRequest();
+  }, [reloadSupervisors, sendRequest]);
+
+  useEffect(() => {
+    if (!isLoading && !error) {
+      setUsers(fetchedUsers);
+      setFilteredUsers(fetchedUsers);
+    }
+  }, [fetchedUsers, isLoading, error]);
 
   useEffect(() => {
     const lowercasedFilter = searchTerm.toLowerCase();
