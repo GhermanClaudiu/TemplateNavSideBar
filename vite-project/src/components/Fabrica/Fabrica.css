@@ -1,0 +1,137 @@
+.manualInput {
+  position: relative;
+  background-color: #f5f5f5; /* Specificează un fundal, deoarece conținutul poate defila "sub" */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 35vh;
+  width: 100%;
+  margin: 0px;
+  /* border: 2px solid black; */
+}
+.manualInput h1 {
+  margin-bottom: 20px;
+}
+.manualInput h3 {
+  color: rgb(151, 151, 20);
+}
+.userName {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  margin: 0px;
+}
+.input-group {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.supervisor-action {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  width: 100%;
+  margin-top: 2px;
+}
+.userTeam {
+  display: flex;
+  gap: 20px;
+}
+.input-wrapper label {
+  margin-right: 10px;
+}
+.manualInput .button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.manualInput button {
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  width: 100%; /* sau o altă valoare specifică dacă dorești */
+}
+.manualInput button:hover {
+  background-color: #0056b3;
+}
+
+.supervisor-action {
+  display: flex;
+  gap: 20px;
+}
+.navigation {
+  position: absolute;
+  bottom: 0px; /* Acest lucru va alinia .navigation la partea de jos a containerului .manualInput */
+  left: 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center; /* Acesta va alinia elementele pe centru pe axa transversală */
+  background-color: rgb(98, 118, 135);
+  width: 100%;
+  height: 50px;
+  margin: 0px;
+}
+.navigation-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #f5f5f5;
+}
+
+.table-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start; /* Alinează elementele copil la începutul containerului */
+  margin-top: 0px;
+  width: 100%; /* Asigură-te că containerul ocupă lățimea completă disponibilă */
+  overflow: auto; /* Creează un scrollbar doar dacă este necesar */
+  max-height: 65%; /* Sau orice altă valoare care se potrivește nevoilor tale */
+  margin: 0px;
+  height: fit-content;
+}
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table-container th {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background-color: #007bff;
+  color: white;
+}
+
+/* Stiluri pentru a personaliza scrollbar-ul (opțional) */
+.table-container::-webkit-scrollbar {
+  width: 10px; /* Lățimea scrollbar-ului */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #8e8f8fb0; /* Culoarea scrollbar-ului */
+  border-radius: 5px; /* Rotunjirea marginilor scrollbar-ului */
+}
+.control-error {
+  color: #b19c89;
+  font-size: 0.8rem;
+  height: 2rem;
+  padding: 0.5rem 0;
+}
+
+.control-error p {
+  margin: 0px;
+  padding: 0px;
+  width: fit-content;
+}

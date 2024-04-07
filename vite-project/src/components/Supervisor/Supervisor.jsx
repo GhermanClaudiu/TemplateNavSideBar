@@ -14,7 +14,10 @@ function Supervisor() {
   const [userLastName, setUserLastName] = useState("");
   const [userTeam, setUserTeam] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const [users, setUsers] = useState([]);
+
   const [reloadSupervisors, setReloadSupervisors] = useState(0);
   const [validationErrors, setValidationErrors] = useState({});
   const [operationSuccess, setOperationSuccess] = useState(false);
@@ -28,6 +31,7 @@ function Supervisor() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
+        setUsers(data);
         setFilteredUsers(data); // Presupunem că datele primite sunt deja filtrate sau le vei filtra ulterior
       } catch (error) {
         console.error("Could not fetch data: ", error);
@@ -36,6 +40,18 @@ function Supervisor() {
 
     fetchData();
   }, [reloadSupervisors]);
+
+  useEffect(() => {
+    const lowercasedFilter = searchTerm.toLowerCase();
+    const filteredData = users.filter((user) => {
+      return (
+        user.FirstName.toLowerCase().includes(lowercasedFilter) ||
+        user.LastName.toLowerCase().includes(lowercasedFilter) ||
+        user.Team.toLowerCase().includes(lowercasedFilter)
+      );
+    });
+    setFilteredUsers(filteredData);
+  }, [searchTerm, users]);
 
   const roleOptions = [
     { value: "", label: "" },
@@ -121,7 +137,7 @@ function Supervisor() {
     setEditingUserId(user.id); // Setarea ID-ului pentru a ști pe cine să actualizezi
     setOperationSuccess(false);
   };
-  console.log("userul poate fi creat" + validationErrors.create);
+
   return (
     <>
       <section className="manualInput">
