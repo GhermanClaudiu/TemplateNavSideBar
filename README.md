@@ -28,7 +28,7 @@ Pentru a rula acest proiect, asigurați-vă că aveți Docker instalat și func�
 1. Clonare repository:
 
    ```
-   git clone https://github.com/exemplu/proiect.git
+   git clone https://github.com/GhermanClaudiu/TemplateNavSideBar.git
    cd proiect
    ```
 
