@@ -18,10 +18,10 @@ COPY . .
 RUN npm run build
 
 # Instalează un server HTTP simplu pentru servirea conținutului static
-RUN npm install -g serve
+RUN npm install serve
 
 # Expune portul pe care va rula serverul HTTP
 EXPOSE 5173
 
 # Comanda pentru a servi aplicația folosind serve
-CMD ["serve", "-s", "dist", "-l", "5173"]
+CMD ["npx", "serve", "-s", "dist", "-l", "5173"]
