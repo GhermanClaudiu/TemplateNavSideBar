@@ -1,18 +1,14 @@
 # Folosește imaginea oficială Node.js ca imagine de bază
 FROM node:20.10.0
 
-
 # Setează directorul de lucru în container
 WORKDIR /usr/src/app
 
-# Copiază fișierul 'package.json' și 'package-lock.json' (dacă există) în directorul de lucru
-COPY package*.json ./
+# Copiază toate fișierele sursă ale proiectului în container
+COPY . .
 
 # Instalează dependențele proiectului, inclusiv cele de dezvoltare
 RUN npm install
-
-# Copiază toate fișierele sursă ale proiectului în container
-COPY . .
 
 # Construiește aplicația pentru producție
 RUN npm run build
