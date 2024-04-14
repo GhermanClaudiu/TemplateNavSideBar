@@ -1,16 +1,37 @@
 version: 2.1
 
 jobs:
-  build:
+  build-backend:
     docker:
-      - image: cimg/node:14.17
+      - image: circleci/node:latest
+    working_directory: ~/project/backend
     steps:
-      - checkout
+      - checkout:
+          path: ~/project
       - run:
-          name: Install Dependencies
+          name: Install backend dependencies
           command: npm install
       - run:
-          name: Build Project
+          name: Run backend tests
+          command: npm test
+
+  build-vite-project:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/project/vite-project
+    steps:
+      - checkout:
+          path: ~/project
+      - run:
+          name: Install vite-project dependencies
+          command: npm install
+      - run:
+          name: Run vite-project build
           command: npm run build
 
-      - run: echo "A first hello"
+workflows:
+  version: 2
+  build_all:
+    jobs:
+      - build-backend
+      - build-vite-project
