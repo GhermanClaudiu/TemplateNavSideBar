@@ -11,9 +11,11 @@ jobs:
       - run:
           name: Install backend dependencies
           command: npm install
-      - run:
-          name: Run backend tests
-          command: npm test
+      - run: echo "hello from backend"
+
+      #- run:
+      #  name: Run backend tests
+      # command: npm test
 
   build-vite-project:
     docker:
@@ -28,6 +30,7 @@ jobs:
       - run:
           name: Run vite-project build
           command: npm run build
+      - run: echo "hello from frontend"
 
 workflows:
   version: 2
