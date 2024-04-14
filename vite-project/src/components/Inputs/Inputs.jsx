@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
 import "./Inputs.css";
 
-function Inputs({ type, name, label, value, onChange, error }) {
+function Inputs({ type, name, label, value, onChange, error, accept }) {
+  // Verifică dacă tipul este 'file' pentru a gestiona condițional propietatea `value`
+  const inputProps = type === "file" ? { accept } : { value };
+
   return (
     <div className="input-wrapper">
       <label htmlFor={name}>{label}:</label>
@@ -9,7 +12,7 @@ function Inputs({ type, name, label, value, onChange, error }) {
         type={type}
         id={name}
         name={name}
-        value={value}
+        {...inputProps} // Aplică `value` sau `accept` bazat pe tipul inputului
         onChange={onChange}
       />
       {error && (
@@ -20,13 +23,15 @@ function Inputs({ type, name, label, value, onChange, error }) {
     </div>
   );
 }
-export default Inputs;
 
 Inputs.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func.isRequired,
-  error: PropTypes.string, //
+  error: PropTypes.string,
+  accept: PropTypes.string,
 };
+
+export default Inputs;
