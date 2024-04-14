@@ -22,8 +22,11 @@ function Supervisor() {
   const [users, setUsers] = useState([]);
 
   const [reloadSupervisors, setReloadSupervisors] = useState(0);
+
   const [validationErrors, setValidationErrors] = useState({});
   const [operationSuccess, setOperationSuccess] = useState(false);
+
+  console.log("inceputul componet");
 
   const {
     data: fetchedUsers,
@@ -33,15 +36,19 @@ function Supervisor() {
   } = useHttp("http://localhost:3000/supervisor", { method: "GET" }, []);
 
   useEffect(() => {
+    console.log("stare Supervizor" + reloadSupervisors);
     sendRequest();
   }, [reloadSupervisors, sendRequest]);
 
   useEffect(() => {
     if (!isLoading && !error) {
-      setUsers(fetchedUsers);
-      setFilteredUsers(fetchedUsers);
+      console.log("set user" + error);
+      if (JSON.stringify(users) !== JSON.stringify(fetchedUsers)) {
+        setUsers(fetchedUsers);
+        setFilteredUsers(fetchedUsers);
+      }
     }
-  }, [fetchedUsers, isLoading, error]);
+  }, [fetchedUsers, error]);
 
   useEffect(() => {
     const lowercasedFilter = searchTerm.toLowerCase();
@@ -52,6 +59,7 @@ function Supervisor() {
         user.Team.toLowerCase().includes(lowercasedFilter)
       );
     });
+    console.log("userfiltrat");
     setFilteredUsers(filteredData);
   }, [searchTerm, users]);
 
@@ -65,6 +73,7 @@ function Supervisor() {
   ];
 
   /* Creaza Supervizor Nou */
+
   const handleSubmit = async (e) => {
     e.preventDefault(); // Previn comportamentul default de submit al formularului
     const errors = {};
@@ -87,48 +96,45 @@ function Supervisor() {
       return;
     }
 
-    // Actualizează starea cu erorile găsite (dacă există)
-    setValidationErrors(errors);
     const userData = {
       FirstName: userFirstName,
       LastName: userLastName,
       Team: userTeam,
       isActive: userIsActive,
     };
-    const url = isEditing
-      ? `http://localhost:3000/supervisor/${editingUserId}`
-      : "http://localhost:3000/supervisor";
+
+    const endpoint = isEditing ? `/supervisor/${editingUserId}` : "/supervisor";
     const method = isEditing ? "PUT" : "POST";
-
-    try {
-      const response = await fetch(url, {
-        method: method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
+    console.log("url-ul este " + endpoint);
+    sendRequest({
+      url: `http://localhost:3000${endpoint}`,
+      method: method,
+      body: JSON.stringify(userData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(() => {
+        // Logică post-request
+        resetFormState();
+        setReloadSupervisors((prev) => prev + 1); // re-fetch
+        console.log("set" + reloadSupervisors);
+      })
+      .catch((err) => {
+        console.error("Failed to submit:", err);
       });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      /* const data = await response.json();
-      console.log(data); // Procesează răspunsul de la server */
-      // Aici poți să resetezi formularul sau să faci alte acțiuni după trimitere
-      setOperationSuccess(true);
-      setUserFirstName("");
-      setUserLastName("");
-      setUserTeam("");
-      setUserIsActive(false);
-      setIsEditing(false);
-      setEditingUserId(null);
-      setValidationErrors({});
-      setReloadSupervisors((prevReload) => prevReload + 1);
-    } catch (error) {
-      console.error("Failed to submit:", error);
-    }
   };
+
+  function resetFormState() {
+    setUserFirstName("");
+    setUserLastName("");
+    setUserTeam("");
+    setUserIsActive(false);
+    setIsEditing(false);
+    setEditingUserId(null);
+    setValidationErrors({});
+    setOperationSuccess(true);
+  }
 
   const handleEdit = (user) => {
     setUserFirstName(user.FirstName);
@@ -139,7 +145,9 @@ function Supervisor() {
     setEditingUserId(user.id); // Setarea ID-ului pentru a ști pe cine să actualizezi
     setOperationSuccess(false);
   };
-
+  const handleExcelFile = (e) => {
+    console.log(e.target.files[0]);
+  };
   return (
     <>
       <section className="manualInput">
@@ -186,7 +194,15 @@ function Supervisor() {
               />
             )}
           </div>
+
           <div className="supervisor-action">
+            <Inputs
+              type="file"
+              name="importFromExcel"
+              label="Import from Excel"
+              onChange={(e) => handleExcelFile(e)}
+              accept=".xlsx, .xls"
+            />
             <Button
               type="button"
               label={isEditing ? "Update User" : "Create User"}
@@ -199,6 +215,7 @@ function Supervisor() {
           <div className="navigation-item">
             <h2>Supervisor List</h2>
           </div>
+          {isLoading && <p>Loading data.</p>}
           <div className="navigation-item">
             <Inputs
               type="search"
