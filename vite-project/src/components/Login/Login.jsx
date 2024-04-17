@@ -1,6 +1,6 @@
 import "./Login.css";
-import Inputs from "../Inputs/Inputs.jsx";
-import Button from "../Buttons/Button.jsx"; // Ajustează calea dacă este necesar
+import Inputs from "../ui/Inputs.jsx";
+import Button from "../ui/Button.jsx";
 
 function Login() {
   return (

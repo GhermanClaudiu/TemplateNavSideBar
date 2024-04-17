@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build-backend:
     docker:
-      - image: circleci/node:latest
+      - image: cimg/node:20.10.0
     working_directory: ~/project/backend
     steps:
       - checkout:
@@ -19,7 +19,7 @@ jobs:
 
   build-vite-project:
     docker:
-      - image: circleci/node:latest
+      - image: cimg/node:20.10.0
     working_directory: ~/project/vite-project
     steps:
       - checkout:
@@ -31,9 +31,12 @@ jobs:
           name: Run vite-project build
           command: npm run build
       - run: echo "hello from frontend"
+      - run:
+          name: Run frontend tests
+          command: npm test
 
 workflows:
-  version: 2
+  version: 2.1
   build_all:
     jobs:
       - build-backend

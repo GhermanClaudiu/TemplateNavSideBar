@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { isNotEmpty } from "../util/validation.js";
-import Inputs from "../Inputs/Inputs";
-import Select from "../Select/Select";
-import Button from "../Buttons/Button.jsx";
-import Checkbox from "../Checkbox/Checkbox.jsx";
+import Inputs from "../ui/Inputs.jsx";
+import Select from "../ui/Select.jsx";
+import Button from "../ui/Button.jsx";
+import Checkbox from "../ui/Checkbox.jsx";
 import useHttp from "../../hooks/useHttp.js";
 
 import "./Supervisors.css";

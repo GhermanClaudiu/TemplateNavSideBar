@@ -10,7 +10,7 @@ services:
     command: npm start
 
   vite-project:
-    build: 
+    build:
       context: ./vite-project
     ports:
       - "5173:5173"
