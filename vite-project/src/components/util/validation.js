@@ -1,5 +1,6 @@
 export function isEmail(value) {
-  return value.includes("@");
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(value);
 }
 
 export function isNotEmpty(value) {
@@ -7,6 +8,10 @@ export function isNotEmpty(value) {
 }
 
 export function hasMinLength(value, minLength) {
+  if (value == null) {
+    return false;
+  }
+
   return value.length >= minLength;
 }
 
