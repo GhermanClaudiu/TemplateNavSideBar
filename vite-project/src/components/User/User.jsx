@@ -1,7 +1,7 @@
 import "./User.css";
 
 function User() {
-  return <div>User</div>;
+  return <div>User Modificat</div>;
 }
 
 export default User;
