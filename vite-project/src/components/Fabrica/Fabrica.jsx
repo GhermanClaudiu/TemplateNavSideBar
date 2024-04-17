@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { isNotEmpty } from "../util/validation.js";
-import Inputs from "../Inputs/Inputs";
-import Select from "../Select/Select";
-import Button from "../Buttons/Button.jsx";
-import Checkbox from "../Checkbox/Checkbox.jsx";
+import Inputs from "../ui/Inputs.jsx";
+
+import Button from "../ui/Button.jsx";
+
 import "./Fabrica.css";
 
 function Fabrica() {
@@ -36,15 +36,6 @@ function Fabrica() {
 
     fetchData();
   }, [reloadSupervisors]);
-
-  const roleOptions = [
-    { value: "", label: "" },
-    { value: "RBA", label: "RBA" },
-    { value: "MRA", label: "MRA" },
-    { value: "Cockpit", label: "Cockpit" },
-    { value: "Doors", label: "Doors" },
-    // Adaugă alte opțiuni aici
-  ];
 
   /* Creaza Supervizor Nou */
   const handleSubmit = async (e) => {
