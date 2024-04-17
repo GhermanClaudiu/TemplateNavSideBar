@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build-backend:
     docker:
-      - image: cimg/node:16.13.2
+      - image: cimg/node:20.10.0
     working_directory: ~/project/backend
     steps:
       - checkout:
@@ -19,7 +19,7 @@ jobs:
 
   build-vite-project:
     docker:
-      - image: cimg/node:16.13.2
+      - image: cimg/node:20.10.0
     working_directory: ~/project/vite-project
     steps:
       - checkout:
